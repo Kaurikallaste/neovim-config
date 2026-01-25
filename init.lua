@@ -16,6 +16,7 @@ vim.keymap.set('n', '<Leader>s', ':w<CR>')
 vim.keymap.set('n', '<Leader>g', ':Neogit<CR>')
 vim.keymap.set('n', '<Leader>qq', ':q<CR>')
 
+-- Packages
 vim.pack.add {
     { src = 'https://github.com/neovim/nvim-lspconfig' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
@@ -28,20 +29,19 @@ vim.pack.add {
 
  -- LSP
  -- GO
-
 vim.lsp.config('go', {
     cmd = { 'gopls' },
     filetypes = { 'go' },
     root_markers = { { 'go.mod' }, '.git' }
 })
-vim.lsp.inlay_hint.enable(true)
 vim.lsp.enable('go')
 
+-- Inline diagnostic messages
 vim.diagnostic.config({
     virtual_text = true,
 })
 
--- nvim treesitter
+-- Treesitter
 require'nvim-treesitter'.setup {
   -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
   install_dir = vim.fn.stdpath('data') .. '/site'
@@ -54,6 +54,6 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function() vim.treesitter.start() end,
 })
 
--- theme
+-- Theme
 vim.o.background = dark
 vim.cmd([[colorscheme gruvbox]])
