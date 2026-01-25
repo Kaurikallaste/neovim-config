@@ -1,13 +1,13 @@
 ## For my sanity
 
-to bashrc
+to .bashrc
 
 ```sh
 alias vim="nvim"
 alias vi="nvim"
 ```
 
-git pull and copy to  ```sh ~/.config/nvim/```
+```git pull``` and copy to  ```~/.config/nvim/```
 
 ## Deps
 ```sh

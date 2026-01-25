@@ -1,4 +1,7 @@
 vim.o.number = true
+vim.o.complete = '.,o'
+vim.o.completeopt = 'fuzzy,menuone,noselect'
+vim.o.autocomplete = true
 vim.o.relativenumber = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
@@ -7,15 +10,28 @@ vim.o.swapfile = false
 
 vim.g.mapleader = ' '
 
-
 vim.keymap.set('n', '<Leader>e', ':Explore<CR>')
 vim.keymap.set('n', '<Leader>o', ':so<CR>') -- TODO: remove after config
-
+vim.keymap.set('n', '<Leader>s', ':w<CR>')
+vim.keymap.set('n', '<Leader>gg', ':Neogit<CR>')
 
 vim.pack.add {
     { src = 'https://github.com/neovim/nvim-lspconfig' },
     { src = 'https://github.com/nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    { src = 'https://github.com/NeogitOrg/neogit' },
+    { src = 'https://github.com/nvim-lua/plenary.nvim' }, -- neogit dep
+    { src = 'https://github.com/sindrets/diffview.nvim' }, -- neogit dep
+    { src = 'https://github.com/nvim-mini/mini.pick' }, -- neogit dep
 }
+
+ -- LSP
+ -- GO
+vim.lsp.config('go', {
+    cmd = { 'gopls' },
+    filetypes = { 'go' },
+    root_markers = { { 'go.mod' }, '.git' }
+})
+vim.lsp.enable('go')
 
 -- nvim treesitter
 require'nvim-treesitter'.setup {
@@ -26,10 +42,6 @@ require'nvim-treesitter'.setup {
 require'nvim-treesitter'.install { 'go' }
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { '<filetype>' },
+  pattern = { 'go' },
   callback = function() vim.treesitter.start() end,
 })
-
- -- LSP
-vim.lsp.config('go', { cmd="gopls" })
-vim.lsp.enable('go')
