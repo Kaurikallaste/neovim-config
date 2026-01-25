@@ -6,3 +6,5 @@ to bashrc
 alias vim="nvim"
 alias vi="nvim"
 ```
+
+git pull and copy to  ```sh ~/.config/nvim/```
