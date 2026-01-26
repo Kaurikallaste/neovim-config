@@ -15,6 +15,7 @@ vim.keymap.set('n', '<Leader>o', ':so<CR>')
 vim.keymap.set('n', '<Leader>s', ':w<CR>')
 vim.keymap.set('n', '<Leader>g', ':Neogit<CR>')
 vim.keymap.set('n', '<Leader>qq', ':q<CR>')
+vim.keymap.set('n', 'gd', '<cmd> lua vim.lsp.buf.definition()<CR>')
 
 -- Packages
 vim.pack.add {
