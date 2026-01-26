@@ -23,9 +23,14 @@ vim.pack.add {
     { src = 'https://github.com/NeogitOrg/neogit' },
     { src = 'https://github.com/nvim-lua/plenary.nvim' }, -- neogit dep
     { src = 'https://github.com/sindrets/diffview.nvim' }, -- neogit dep
-    { src = 'https://github.com/nvim-mini/mini.pick' }, -- neogit dep
+    { src = 'https://github.com/nvim-telescope/telescope.nvim', build = 'make' },
     { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
 }
+
+
+-- Telescope setup
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = 'Telescope find files'})
 
  -- LSP
  -- GO
