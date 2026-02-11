@@ -26,7 +26,7 @@ vim.pack.add {
     { src = 'https://github.com/nvim-lua/plenary.nvim' }, -- neogit dep
     { src = 'https://github.com/sindrets/diffview.nvim' }, -- neogit dep
     { src = 'https://github.com/nvim-telescope/telescope.nvim', build = 'make' },
-  --  { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
+    { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
 }
 
 
@@ -62,5 +62,5 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Theme
--- vim.o.background = dark
--- vim.cmd([[colorscheme gruvbox]])
+vim.o.background = dark
+vim.cmd([[colorscheme gruvbox]])
