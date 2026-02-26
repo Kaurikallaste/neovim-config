@@ -14,4 +14,6 @@ alias vi="nvim"
 tree-sitter-cli
 neovim > 0.12
 go + gopls
+nvm, node, typescript installed globally
+ripgrep
 ```

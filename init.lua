@@ -10,15 +10,6 @@ vim.o.swapfile = false
 
 vim.g.mapleader = ' '
 
-vim.keymap.set('n', '<Leader>e', ':Explore<CR>')
-vim.keymap.set('n', '<Leader>o', ':so<CR>')
-vim.keymap.set('n', '<Leader>s', ':w<CR>')
-vim.keymap.set('n', '<Leader>g', ':Neogit<CR>')
-vim.keymap.set('n', '<Leader>qq', ':q<CR>')
-vim.keymap.set('n', 'gd', '<cmd> lua vim.lsp.buf.definition()<CR>')
-vim.keymap.set('n', '<Leader>c', ':noh<CR>')
-vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
-
 -- Packages
 vim.pack.add {
     { src = 'https://github.com/neovim/nvim-lspconfig' },
@@ -30,10 +21,36 @@ vim.pack.add {
     { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
 }
 
-
 -- Telescope setup
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<Leader>f', builtin.find_files, { desc = 'Telescope find files'})
+
+require('telescope').setup{
+    pickers = {
+        find_files = {
+            theme = 'dropdown',
+        },
+        live_grep = {
+            theme = 'dropdown',
+        },
+        lsp_references = {
+            theme = 'dropdown'
+        },
+    }
+}
+
+-- Keybinds
+vim.keymap.set('n', '<leader>e', ':Explore<CR>')
+vim.keymap.set('n', '<leader>o', ':so<CR>')
+vim.keymap.set('n', '<leader>s', ':w<CR>')
+vim.keymap.set('n', '<leader>g', ':Neogit<CR>')
+vim.keymap.set('n', '<leader>qq', ':q<CR>')
+vim.keymap.set('n', 'gd', '<cmd> lua vim.lsp.buf.definition()<CR>')
+vim.keymap.set('n', '<leader>c', ':noh<CR>')
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files'})
+vim.keymap.set('n', '<leader>lg', builtin.live_grep, { desc = 'Telescope find text'})
+vim.keymap.set('n', '<leader>lr', builtin.lsp_references, { desc = 'Telescope find references'})
+
 
  -- LSP
  -- GO
@@ -44,6 +61,7 @@ vim.lsp.config('go', {
 })
 vim.lsp.enable('go')
 
+-- TS
 vim.lsp.config('tsserver', {
   cmd = {'typescript-language-server', '--stdio'},
   filetypes = { 'typescript' },
