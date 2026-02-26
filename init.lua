@@ -17,6 +17,7 @@ vim.keymap.set('n', '<Leader>g', ':Neogit<CR>')
 vim.keymap.set('n', '<Leader>qq', ':q<CR>')
 vim.keymap.set('n', 'gd', '<cmd> lua vim.lsp.buf.definition()<CR>')
 vim.keymap.set('n', '<Leader>c', ':noh<CR>')
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
 
 -- Packages
 vim.pack.add {
@@ -43,6 +44,15 @@ vim.lsp.config('go', {
 })
 vim.lsp.enable('go')
 
+vim.lsp.config('tsserver', {
+  cmd = {'typescript-language-server', '--stdio'},
+  filetypes = { 'typescript' },
+  root_dir = vim.fs.root(0, {'package.json', '.git'}),
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+vim.lsp.enable('tsserver')
+
 -- Inline diagnostic messages
 vim.diagnostic.config({
     virtual_text = true,
@@ -54,10 +64,10 @@ require'nvim-treesitter'.setup {
   install_dir = vim.fn.stdpath('data') .. '/site'
 }
 
-require'nvim-treesitter'.install { 'go' }
+require'nvim-treesitter'.install { 'go', 'typescript' }
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'go' },
+  pattern = { 'go', 'ts', 'tsx' },
   callback = function() vim.treesitter.start() end,
 })
 
