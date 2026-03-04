@@ -19,6 +19,7 @@ vim.pack.add {
     { src = 'https://github.com/sindrets/diffview.nvim' }, -- neogit dep
     { src = 'https://github.com/nvim-telescope/telescope.nvim', build = 'make' },
     { src = 'https://github.com/ellisonleao/gruvbox.nvim' },
+    { src = 'https://github.com/m4xshen/autoclose.nvim' },
 }
 
 -- Telescope setup
@@ -88,6 +89,9 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'go', 'ts', 'tsx' },
   callback = function() vim.treesitter.start() end,
 })
+
+-- Brace autoclose
+require'autoclose'.setup()
 
 -- Theme
 vim.o.background = dark
