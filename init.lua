@@ -62,6 +62,14 @@ vim.lsp.config('go', {
 })
 vim.lsp.enable('go')
 
+-- Rust
+vim.lsp.config('rust_analyzer', {
+    cmd = { 'rust-analyzer' },
+    filetypes = { 'rust' },
+    root_markers = { 'Cargo.toml', 'rust-project.json', '.git' },
+})
+vim.lsp.enable('rust_analyzer')
+
 -- TS
 vim.lsp.config('tsserver', {
   cmd = {'typescript-language-server', '--stdio'},
@@ -83,10 +91,10 @@ require'nvim-treesitter'.setup {
   install_dir = vim.fn.stdpath('data') .. '/site'
 }
 
-require'nvim-treesitter'.install { 'go', 'typescript' }
+require'nvim-treesitter'.install { 'go', 'rust', 'typescript' }
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'go', 'ts', 'tsx' },
+  pattern = { 'go', 'rust', 'ts', 'tsx' },
   callback = function() vim.treesitter.start() end,
 })
 
